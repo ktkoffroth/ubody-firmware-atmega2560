@@ -10,7 +10,38 @@ void EEPROM_Write(unsigned int uiAddress, unsigned char uiData); // Write char t
 unsigned char EEPROM_Read(unsigned int uiAddress);  // Read char from specified address
 
 // control table function prototypes
-
+unsigned int modelNumber(unsigned int, bool);
+unsigned int versionNumber(unsigned int, bool);
+unsigned int ID(unsigned int, bool);
+unsigned int baudRate(unsigned int, bool);
+unsigned int returnDelayTime(unsigned int, bool);
+unsigned int cwAngleLimit(unsigned int, bool);
+unsigned int ccwAngleLimit(unsigned int, bool);
+unsigned int temperatureLimit(unsigned int, bool);
+unsigned int minVoltageLimit(unsigned int, bool);
+unsigned int maxVoltageLimit(unsigned int, bool);
+unsigned int maxTorque(unsigned int, bool);
+unsigned int statusReturnLevel(unsigned int, bool);
+unsigned int alarmLED(unsigned int, bool);
+unsigned int shutdown(unsigned int, bool);
+unsigned int torqueEnable(unsigned int, bool);
+unsigned int LED(unsigned int, bool);
+unsigned int cwComplianceMargin(unsigned int, bool);
+unsigned int ccwComplianceMargin(unsigned int, bool);
+unsigned int cwComplianceSlope(unsigned int, bool);
+unsigned int ccwComplianceSlope(unsigned int, bool);
+unsigned int goalPosition(unsigned int, bool);
+unsigned int movingSpeed(unsigned int, bool);
+unsigned int torqueLimit(unsigned int, bool);
+unsigned int presentPosition(unsigned int, bool);
+unsigned int presentSpeed(unsigned int, bool);
+unsigned int presentLoad(unsigned int, bool);
+unsigned int presentVoltage(unsigned int, bool);
+unsigned int presentTemperature(unsigned int, bool);
+unsigned int registered(unsigned int, bool);
+unsigned int moving(unsigned int, bool);
+unsigned int lock(unsigned int, bool);
+unsigned int punch(unsigned int, bool);
 
 // main function prototypes
 
@@ -25,6 +56,38 @@ int main(void)
 
     // control table function * array setup
     unsigned int (*controlTable[60])(unsigned int, bool);
+    controlTable[0] = modelNumber;
+    controlTable[2] = versionNumber;
+    controlTable[3] = ID;
+    controlTable[4] = baudRate;
+    controlTable[5] = returnDelayTime;
+    controlTable[6] = cwAngleLimit;
+    controlTable[8] = ccwAngleLimit;
+    controlTable[11] = temperatureLimit;
+    controlTable[12] = minVoltageLimit;
+    controlTable[13] = maxVoltageLimit;
+    controlTable[14] = maxTorque;
+    controlTable[16] = statusReturnLevel;
+    controlTable[17] = alarmLED;
+    controlTable[18] = shutdown;
+    controlTable[24] = torqueEnable;
+    controlTable[25] = LED;
+    controlTable[26] = cwComplianceMargin;
+    controlTable[27] = ccwComplianceMargin;
+    controlTable[28] = cwComplianceSlope;
+    controlTable[29] = ccwComplianceSlope;
+    controlTable[30] = goalPosition;
+    controlTable[32] = movingSpeed;
+    controlTable[34] = torqueLimit;
+    controlTable[36] = presentPosition;
+    controlTable[38] = presentSpeed;
+    controlTable[40] = presentLoad;
+    controlTable[42] = presentVoltage;
+    controlTable[43] = presentTemperature;
+    controlTable[44] = registered;
+    controlTable[46] = moving;
+    controlTable[47] = lock;
+    controlTable[48] = punch;
 
     // USART serial setup (Half-duplex async mode)
     USART_Init(controlTable[4](0, false));
@@ -92,4 +155,132 @@ unsigned char EEPROM_Read(unsigned int uiAddress)
   EECR |= (1<<EERE);
   // Return data register
   return EEDR;
+}
+unsigned int modelNumber(unsigned int, bool)
+{
+
+}
+unsigned int versionNumber(unsigned int, bool)
+{
+  
+}
+unsigned int ID(unsigned int, bool)
+{
+  
+}
+unsigned int baudRate(unsigned int, bool)
+{
+  
+}
+unsigned int returnDelayTime(unsigned int, bool)
+{
+  
+}
+unsigned int cwAngleLimit(unsigned int, bool)
+{
+  
+}
+unsigned int ccwAngleLimit(unsigned int, bool)
+{
+  
+}
+unsigned int temperatureLimit(unsigned int, bool)
+{
+  
+}
+unsigned int minVoltageLimit(unsigned int, bool)
+{
+  
+}
+unsigned int maxVoltageLimit(unsigned int, bool)
+{
+  
+}
+unsigned int maxTorque(unsigned int, bool)
+{
+  
+}
+unsigned int statusReturnLevel(unsigned int, bool)
+{
+  
+}
+unsigned int alarmLED(unsigned int, bool)
+{
+  
+}
+unsigned int shutdown(unsigned int, bool)
+{
+  
+}
+unsigned int torqueEnable(unsigned int, bool)
+{
+  
+}
+unsigned int LED(unsigned int, bool)
+{
+  
+}
+unsigned int cwComplianceMargin(unsigned int, bool)
+{
+  
+}
+unsigned int ccwComplianceMargin(unsigned int, bool)
+{
+  
+}
+unsigned int cwComplianceSlope(unsigned int, bool)
+{
+  
+}
+unsigned int ccwComplianceSlope(unsigned int, bool)
+{
+  
+}
+unsigned int goalPosition(unsigned int, bool)
+{
+  
+}
+unsigned int movingSpeed(unsigned int, bool)
+{
+  
+}
+unsigned int torqueLimit(unsigned int, bool)
+{
+  
+}
+unsigned int presentPosition(unsigned int, bool)
+{
+  
+}
+unsigned int presentSpeed(unsigned int, bool)
+{
+  
+}
+unsigned int presentLoad(unsigned int, bool)
+{
+  
+}
+unsigned int presentVoltage(unsigned int, bool)
+{
+  
+}
+unsigned int presentTemperature(unsigned int, bool)
+{
+  
+}
+unsigned int registered(unsigned int, bool)
+{
+  
+}
+unsigned int moving(unsigned int, bool)
+{
+  
+}
+unsigned int lock(unsigned int, bool)
+{
+  
+}
+unsigned int punch(unsigned int, bool)
+{
+  
 }
