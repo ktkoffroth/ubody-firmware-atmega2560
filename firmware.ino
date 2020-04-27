@@ -2,9 +2,18 @@
 #define BAUD 9600 // Desired baud rate
 #define MYUBRR (FOSC/16/BAUD-1) // Actual baud rate
 
+// hardware function prototypes
 void USART_Init(unsigned int ubrr); // USART serial setup (half-duplex async mode)
 void USART_Transmit(unsigned char data); // Transmit a char in serial
 unsigned char USART_Recieve(void); // Recieve a char from serial
+void EEPROM_Write(unsigned int uiAddress, unsigned char uiData); // Write char to specified address
+unsigned char EEPROM_Read(unsigned int uiAddress);  // Read char from specified address
+
+// control table function prototypes
+
+
+// main function prototypes
+
 
 int main(void)
    {
@@ -14,9 +23,11 @@ int main(void)
 	USB.attach();
 #endif
 
+    // control table function * array setup
+    unsigned int (*controlTable[60])(unsigned int, bool);
+
     // USART serial setup (Half-duplex async mode)
-    USART_Init(MYUBRR);
-    unsigned char echo;
+    USART_Init(controlTable[4](0, false));
 
      //Start loop
      while(true)
@@ -53,4 +64,32 @@ unsigned char USART_Recieve(void)
 
   // Get and return recieved data from buffer
   return UDR0;
+}
+
+void EEPROM_Write(unsigned int uiAddress, unsigned char uiData)
+{
+  // Wait for last write operation to complete
+  while (EECR & (1<<EEPE));
+
+  // Set up address and data registers
+  EEAR = uiAddress;
+  EEDR = uiData;
+
+  // Write logical 1 to EEMPE
+  EECR |= (1<<EEMPE);
+  // Start EEPROM write by setting EEPE
+  EECR |= (1<<EEPE);
+}
+
+unsigned char EEPROM_Read(unsigned int uiAddress)
+{
+  // Wait for last read/write operation to complete
+  while (EECR & (1<<EEPE));
+
+  // Set up address register
+  EEAR = uiAddress;
+  // Start EEPROM read by setting EEPE
+  EECR |= (1<<EERE);
+  // Return data register
+  return EEDR;
 }
